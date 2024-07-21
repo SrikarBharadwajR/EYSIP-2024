@@ -1,0 +1,136 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "eab4dd75-0b6d-45d7-9c61-64430ccaa28c")
+	(paper "A4")
+	(title_block
+		(title "OptoIsolation for Mobi-L")
+		(date "2024-06-10")
+		(comment 1 "Author: Srikar Bharadwaj R")
+	)
+	(lib_symbols)
+	(sheet
+		(at 114.3 35.56)
+		(size 12.7 7.62)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "249653ad-32a1-4637-9a86-32e573063248")
+		(property "Sheetname" "PWM Isolation"
+			(at 114.3 34.8484 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "PWM Isolation v2.kicad_sch"
+			(at 114.3 43.7646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Field2" ""
+			(at 114.3 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "OptoIsolation"
+				(path "/c2f3c882-e8d8-4011-9350-fac3c26c0aa0/95f5bc2b-ab1f-44fb-ad30-37c790e59cd6"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 160.02 35.56)
+		(size 12.7 10.16)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "58c101c6-bd7e-4761-8de3-c12cfc51e0ba")
+		(property "Sheetname" "PWM Isolation v3"
+			(at 160.02 34.8484 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "PWM Isolation v3.kicad_sch"
+			(at 160.02 46.3046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "OptoIsolation"
+				(path "/c2f3c882-e8d8-4011-9350-fac3c26c0aa0/95f5bc2b-ab1f-44fb-ad30-37c790e59cd6"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 63.5 35.56)
+		(size 12.7 7.62)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "97509a2d-99da-434c-8700-32c44b2fc52c")
+		(property "Sheetname" "PWM Isolation v1"
+			(at 63.5 34.8484 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "PWM Isolation v1.kicad_sch"
+			(at 63.5 43.7646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "OptoIsolation"
+				(path "/c2f3c882-e8d8-4011-9350-fac3c26c0aa0/95f5bc2b-ab1f-44fb-ad30-37c790e59cd6"
+					(page "3")
+				)
+			)
+		)
+	)
+)
