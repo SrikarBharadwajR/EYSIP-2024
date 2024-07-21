@@ -1,0 +1,21 @@
+Output/Debug/Obj/BLE_with_IMU/system_nrf52.o: \
+ /mnt/Storage/Projects/Segger/nRF5_SDK_17.1.0_ddde560/modules/nrfx/mdk/system_nrf52.c \
+ /usr/share/segger_embedded_studio_for_arm_7.32a/include/stdint.h \
+ /usr/share/segger_embedded_studio_for_arm_7.32a/include/__SEGGER_RTL.h \
+ /usr/share/segger_embedded_studio_for_arm_7.32a/include/__SEGGER_RTL_ConfDefaults.h \
+ /usr/share/segger_embedded_studio_for_arm_7.32a/include/__SEGGER_RTL_Conf.h \
+ /usr/share/segger_embedded_studio_for_arm_7.32a/include/__SEGGER_RTL_Arm_Conf.h \
+ /usr/share/segger_embedded_studio_for_arm_7.32a/include/stdbool.h \
+ /mnt/Storage/Projects/Segger/nRF5_SDK_17.1.0_ddde560/modules/nrfx/mdk/nrf.h \
+ /mnt/Storage/Projects/Segger/nRF5_SDK_17.1.0_ddde560/modules/nrfx/mdk/nrf52.h \
+ ../../../../../../components/toolchain/cmsis/include/core_cm4.h \
+ ../../../../../../components/toolchain/cmsis/include/core_cmInstr.h \
+ ../../../../../../components/toolchain/cmsis/include/cmsis_gcc.h \
+ ../../../../../../components/toolchain/cmsis/include/core_cmFunc.h \
+ ../../../../../../components/toolchain/cmsis/include/core_cmSimd.h \
+ /mnt/Storage/Projects/Segger/nRF5_SDK_17.1.0_ddde560/modules/nrfx/mdk/system_nrf52.h \
+ /mnt/Storage/Projects/Segger/nRF5_SDK_17.1.0_ddde560/modules/nrfx/mdk/system_nrf.h \
+ /mnt/Storage/Projects/Segger/nRF5_SDK_17.1.0_ddde560/modules/nrfx/mdk/nrf52_bitfields.h \
+ /mnt/Storage/Projects/Segger/nRF5_SDK_17.1.0_ddde560/modules/nrfx/mdk/nrf51_to_nrf52.h \
+ /mnt/Storage/Projects/Segger/nRF5_SDK_17.1.0_ddde560/modules/nrfx/mdk/nrf52_name_change.h \
+ /mnt/Storage/Projects/Segger/nRF5_SDK_17.1.0_ddde560/modules/nrfx/mdk/compiler_abstraction.h
