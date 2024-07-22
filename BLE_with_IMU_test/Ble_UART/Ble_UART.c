@@ -367,66 +367,15 @@ void bsp_event_handler(bsp_event_t event) {
  *          'new line' '\n' (hex 0x0A) or if the string has reached the maximum data length.
  */
 /**@snippet [Handling the data received over UART] */
-// void uart_event_handle(app_uart_evt_t *p_event) {
-//   static uint8_t data_array[BLE_NUS_MAX_DATA_LEN];
-//   static uint8_t index = 0;
-//   uint32_t err_code;
-
-//  switch (p_event->evt_type) {
-//  case APP_UART_DATA_READY:
-//    UNUSED_VARIABLE(app_uart_get(&data_array[index]));
-//    index++;
-
-//    if ((data_array[index - 1] == '\n') ||
-//        (data_array[index - 1] == '\r') ||
-//        (index >= m_ble_nus_max_data_len)) {
-//      if (index > 1) {
-//        NRF_LOG_DEBUG("Ready to send data over BLE NUS");
-//        NRF_LOG_HEXDUMP_DEBUG(data_array, index);
-
-//        do {
-//          uint16_t length = (uint16_t)index;
-//          err_code = ble_nus_data_send(&m_nus, data_array, &length, m_conn_handle);
-//          if ((err_code != NRF_ERROR_INVALID_STATE) &&
-//              (err_code != NRF_ERROR_RESOURCES) &&
-//              (err_code != NRF_ERROR_NOT_FOUND)) {
-//            APP_ERROR_CHECK(err_code);
-//          }
-//        } while (err_code == NRF_ERROR_RESOURCES);
-//      }
-
-//      index = 0;
-//    }
-//    break;
-
-//  case APP_UART_COMMUNICATION_ERROR:
-//    APP_ERROR_HANDLER(p_event->data.error_communication);
-//    break;
-
-//  case APP_UART_FIFO_ERROR:
-//    APP_ERROR_HANDLER(p_event->data.error_code);
-//    break;
-
-//  default:
-//    break;
-//  }
-//}
 
 void uart_event_handle(app_uart_evt_t *p_event) {
 
   switch (p_event->evt_type) {
   case APP_UART_DATA_READY:
+    UNUSED_VARIABLE(app_uart_get(&ble_rcv_data[ble_index]));
+    ble_index++;
     NRF_LOG_DEBUG("Ready to send data over BLE NUS");
     NRF_LOG_HEXDUMP_DEBUG(data_array, strlen(data_array) - 1);
-    // do {
-    //   uint16_t length = strlen(data_array) - 1;
-    //   err_code = ble_nus_data_send(&m_nus, data_array, &length, m_conn_handle);
-    //   if ((err_code != NRF_ERROR_INVALID_STATE) &&
-    //       (err_code != NRF_ERROR_RESOURCES) &&
-    //       (err_code != NRF_ERROR_NOT_FOUND)) {
-    //     APP_ERROR_CHECK(err_code);
-    //   }
-    // } while (err_code == NRF_ERROR_RESOURCES);
     break;
   case APP_UART_COMMUNICATION_ERROR:
     APP_ERROR_HANDLER(p_event->data.error_communication);
@@ -546,32 +495,46 @@ static void advertising_start(void) {
   APP_ERROR_CHECK(err_code);
 }
 
+/**
+ * @brief Initializes the BLE UART module.
+ *
+ * This function sets up and initializes various components required for the BLE UART module,
+ * including UART, logging, timers, buttons, LEDs, BLE stack, GAP parameters, GATT, services,
+ * advertising, and connection parameters. It also starts advertising.
+ */
 void ble_uart_init(void) {
   bool erase_bonds;
-  // Initialize.
-  uart_init();
-  log_init();
-  timers_init();
-  buttons_leds_init(&erase_bonds);
-  // power_management_init();
-  ble_stack_init();
-  gap_params_init();
-  gatt_init();
-  services_init();
-  advertising_init();
-  conn_params_init();
-  advertising_start();
+
+  uart_init();                     // Initialize UART for serial communication
+  log_init();                      // Initialize logging system
+  timers_init();                   // Initialize timers
+  buttons_leds_init(&erase_bonds); // Initialize buttons and LEDs, and check if bonds should be erased
+  /* power_management_init();*/    // Initialize power management (commented out)
+  ble_stack_init();                // Initialize BLE stack
+  gap_params_init();               // Initialize GAP (Generic Access Profile) parameters
+  gatt_init();                     // Initialize GATT (Generic Attribute Profile) module
+  services_init();                 // Initialize BLE services
+  advertising_init();              // Initialize advertising module
+  conn_params_init();              // Initialize connection parameters module
+  advertising_start();             // Start advertising
 }
 
+/**
+ * @brief Transmits IMU data over BLE.
+ *
+ * This function sends the IMU data stored in the data_array over BLE using the Nordic UART Service (NUS).
+ * It handles potential errors and ensures that the data is successfully sent, retrying if necessary.
+ */
 void transmitIMUdata() {
   uint32_t err_code;
-  do {
-    uint16_t length = strlen(data_array);
-    err_code = ble_nus_data_send(&m_nus, (uint8_t *)data_array, &length, m_conn_handle);
-    if ((err_code != NRF_ERROR_INVALID_STATE) &&
-        (err_code != NRF_ERROR_RESOURCES) &&
-        (err_code != NRF_ERROR_NOT_FOUND)) {
-      APP_ERROR_CHECK(err_code);
-    }
-  } while (err_code == NRF_ERROR_RESOURCES);
+
+  do {                                                                                   // Attempt to send the IMU data until resources are available
+    uint16_t length = strlen(data_array);                                                // Get the length of the data to be sent
+    err_code = ble_nus_data_send(&m_nus, (uint8_t *)data_array, &length, m_conn_handle); // Send the data using the Nordic UART Service (NUS)
+    if ((err_code != NRF_ERROR_INVALID_STATE) &&                                         // Check for specific error codes and handle them appropriately
+        (err_code != NRF_ERROR_RESOURCES) &&                                             //
+        (err_code != NRF_ERROR_NOT_FOUND)) {                                             //
+      APP_ERROR_CHECK(err_code);                                                         // If the error is not one of the expected ones, check the error code
+    }                                                                                    //
+  } while (err_code == NRF_ERROR_RESOURCES);                                             // Retry if resources are temporarily unavailable
 }

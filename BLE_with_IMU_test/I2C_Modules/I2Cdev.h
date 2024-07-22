@@ -50,7 +50,6 @@ bool writeWord(uint8_t devAddr, uint8_t regAddr, uint16_t data);
 bool writeBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *data);
 bool writeWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16_t *data);
 void twi_handler(nrf_drv_twi_evt_t const *p_event, void *p_context);
-bool VCN4040_writeByte(uint8_t devAddr, uint8_t regAddr, uint16_t data);
 extern uint16_t readTimeout;
 
 #endif /* _I2CDEV_H_ */

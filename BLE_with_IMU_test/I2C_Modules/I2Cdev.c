@@ -1,5 +1,5 @@
-#define SCL_PIN 27
-#define SDA_PIN 26
+#define SCL_PIN 15
+#define SDA_PIN 14
 
 #include "I2Cdev.h"
 
@@ -278,18 +278,4 @@ bool writeWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16_t *data
       return false;
   }
   return true;
-}
-bool VCN4040_writeByte(uint8_t devAddr, uint8_t regAddr, uint16_t data) {
-  ret_code_t err_code;
-  uint8_t w2_data[3];
-  w2_data[0] = regAddr;
-  w2_data[1] = data;
-  w2_data[2] = data << 8;
-
-  m_xfer_done = false;
-  err_code = nrf_drv_twi_tx(&m_twi, devAddr, w2_data, sizeof(w2_data), false);
-  APP_ERROR_CHECK(err_code);
-  while (!m_xfer_done) {
-  }
-  return err_code == NRF_SUCCESS;
 }
